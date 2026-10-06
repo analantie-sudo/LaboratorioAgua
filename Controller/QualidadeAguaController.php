@@ -2,18 +2,18 @@
 
 namespace QualidadeAgua;
 
-use Model\Sample;
-use Model\WaterQuality;
+use Model\Amostra;
+use Model\QualidadeAgua;
 use InvalidArgumentException;
 
 class WaterController
 {
-    private Sample $sample;
+    private Amostra $sample;
     private QualidadeAgua $quality;
 
     public function __construct()
     {
-        $this->sample = new Sample();
+        $this->sample = new Amostra();
         $this->quality = new QualidadeAgua();
     }
 
