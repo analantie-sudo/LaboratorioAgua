@@ -1,53 +1,51 @@
 <?php
 
-namespace QualidadeAgua;
+declare(strict_types=1);
 
-use Model\Amostra;
+namespace QualidadeAguaController;
+
 use Model\QualidadeAgua;
-use InvalidArgumentException;
 
-class WaterController
+class QualidadeAguaController
 {
-    private Amostra $sample;
-    private QualidadeAgua $quality;
+    private QualidadeAgua $modeloQualidade;
 
     public function __construct()
     {
-        $this->sample = new Amostra();
-        $this->quality = new QualidadeAgua();
+        $this->modeloQualidade = new QualidadeAgua();
     }
 
-    public function validate(array $data): array
+    public function validarDados(array $dados): ?string
     {
-        $errors = [];
-
-        foreach (QualidadeAgua::limits() as $key => $config) {
-            if (!array_key_exists($key, $data) || $data[$key] === '') {
-                $errors[$key] = 'Campo obrigatório.';
-                continue;
+        foreach ($this->modeloQualidade->obterFaixas() as $parametro => $faixa) {
+            if (!array_key_exists($parametro, $dados) || $dados[$parametro] === '') {
+                return "O campo {$faixa['nome']} é obrigatório.";
             }
 
-            if (!is_numeric($data[$key])) {
-                $errors[$key] = 'Informe um número válido.';
+            if (!is_numeric($dados[$parametro])) {
+                return "O valor de {$faixa['nome']} deve ser numérico.";
             }
         }
 
-        return $errors;
+        return null;
     }
 
-    public function analisar(array $data): array
+    public function analisarAmostra(array $dados): array
     {
-        $errors = $this->validate($data);
+        $erro = $this->validarDados($dados);
 
-        if ($errors !== []) {
-            throw new InvalidArgumentException('Existem campos inválidos ou ausentes.');
+        if ($erro !== null) {
+            throw new InvalidArgumentException($erro);
         }
 
-        return $this->sample->analisar($data);
+        $resultados = $this->modeloQualidade->analisar($dados);
+
+        return ['resultados' => $resultados,'parecer' => $this->modeloQualidade->gerarParecer($resultados)
+        ];
     }
 
-    public function referenceTable(): array
+    public function obterReferencias(): array
     {
-        return $this->quality::limits();
+        return $this->modeloQualidade->obterFaixas();
     }
 }

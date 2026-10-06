@@ -1,35 +1,27 @@
 <?php
 
-namespace Controller;
+declare(strict_types=1);
+
+namespace BiofiltroController;
 
 use Model\Biofiltro;
-use InvalidArgumentException;
 
 class BiofiltroController
 {
-    private Biofiltro $biofiltro;
+    private Biofiltro $modeloBiofiltro;
 
     public function __construct()
     {
-        $this->biofiltro = new Biofiltro();
+        $this->modeloBiofiltro = new Biofiltro();
     }
 
-    public function calculate(float $before, float $after): float
+    public function calcularEficiencia(float $antes, float $depois): float
     {
-        return $this->biofiltro->removalRate($before, $after);
+        return $this->modeloBiofiltro->calcularEficiencia($antes, $depois);
     }
 
-    public function apply(float $value, float $percentage): float
+    public function compararResultados(array $antes, array $depois): array
     {
-        return $this->biofiltro->apply($value, $percentage);
-    }
-
-    public function validatePercentage(float $percentage): ?string
-    {
-        if ($percentage < 0 || $percentage > 100) {
-            return 'A porcentagem deve estar entre 0 e 100.';
-        }
-
-        return null;
+        return $this->modeloBiofiltro->comparar($antes, $depois);
     }
 }
