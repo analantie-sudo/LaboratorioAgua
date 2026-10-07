@@ -2,26 +2,19 @@
     "name": "laura/laboratorio-agua",
     "description": "Laboratório digital de qualidade de água",
     "type": "project",
-    "license": "proprietary",
     "autoload": {
-    "psr-4": {
-        "Model\\": "Model/",
-        "Controller\\": "Controller/"
-    }
-},
-
-    "authors": [
-        {
-            "name": "Laura Souza",
-            "email": "laura.souza@ba.estudante.senai.br"
-        },
-        {
-            "name": "Ana Maria Lantiê",
-            "email": "ana.lantie@ba.estudante.senai.br"
+        "psr-4": {
+            "Laura\\LaboratorioAgua\\": "LaboratorioAgua/",
+            "Controller\\": "Controller/",
+            "Model\\": "Model/"
         }
-    ],
+    },
     "minimum-stability": "dev",
+    "require": {
+        "php": ">= 8.4",
+        "ext-mbstring": "*"
+    },
     "require-dev": {
-        "phpunit/phpunit": "^11"
+        "phpunit/phpunit": "^13.5@dev"
     }
 }

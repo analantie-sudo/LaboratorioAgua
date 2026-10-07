@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Controller\ControladorQualidadeAgua;
 use Model\Amostra;
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <nav class="navbar navbar-dark bg-primary">
     <div class="container">
         <span class="navbar-brand">Laboratório Digital da Água</span>
-        <a href="referencias.php" class="btn btn-light">Referências</a>
+        <a href="View/referencias.php" class="btn btn-light">Referências</a>
     </div>
 </nav>
 
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="p-5 mb-4 bg-light rounded-4">
         <h1 class="display-6">Laboratório da Água + Biofiltro Experimental</h1>
         <p class="lead">Sistema educacional para analisar a qualidade da água e avaliar a eficiência experimental de um biofiltro.</p>
-        <a href="cadastro.php" class="btn btn-primary btn-lg">Cadastrar amostra</a>
+        <a href="View/cadastro.php" class="btn btn-primary btn-lg">Cadastrar amostra</a>
     </div>
 
     <?php if ($erro !== null): ?>
