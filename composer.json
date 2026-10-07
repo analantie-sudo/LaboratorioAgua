@@ -1,0 +1,27 @@
+{
+    "name": "laura/laboratorio-agua",
+    "description": "Laboratório digital de qualidade de água",
+    "type": "project",
+    "license": "proprietary",
+    "autoload": {
+    "psr-4": {
+        "Model\\": "Model/",
+        "Controller\\": "Controller/"
+    }
+},
+
+    "authors": [
+        {
+            "name": "laurasouza-byte",
+            "email": "laura.souza@ba.estudante.senai.br"
+        },
+        {
+            "name": "Ana Maria",
+            "email": "ana.lantie@ba.estudante.senai.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "^11"
+    }
+}

@@ -12,11 +12,11 @@ class Amostra
         $dataColeta = trim((string) ($dados['data_coleta'] ?? ''));
 
         if ($nome === '') {
-            throw new InvalidArgumentException('O nome da amostra é obrigatório.');
+            throw new ArgumentoInvalido('O nome da amostra é obrigatório.');
         }
 
         if ($dataColeta === '') {
-            throw new InvalidArgumentException('A data da coleta é obrigatória.');
+            throw new ArgumentoInvalido('A data da coleta é obrigatória.');
         }
 
         return ['nome' => $nome,'data_coleta' => $dataColeta,'observacoes' => trim((string) ($dados['observacoes'] ?? '')),'parametros' => $dados['parametros'] ?? []];

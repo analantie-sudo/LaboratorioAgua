@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Testes;
+namespace tests;
 
 use Model\Amostra;
 use PHPUnit\Framework\TestCase;
+use Model\ArgumentoInvalido;
 
 final class AmostraTest extends TestCase
 {
@@ -26,13 +27,13 @@ final class AmostraTest extends TestCase
 
     public function testNomeAusenteGeraErro(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(ArgumentoInvalido::class);
         $this->amostra->criar(['data_coleta' => '2026-10-06']);
     }
 
     public function testDataAusenteGeraErro(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(ArgumentoInvalido::class);
         $this->amostra->criar(['nome' => 'Amostra']);
     }
 }

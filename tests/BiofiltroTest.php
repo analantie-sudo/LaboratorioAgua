@@ -6,6 +6,7 @@ namespace tests;
 
 use Model\Biofiltro;
 use PHPUnit\Framework\TestCase;
+use Model\ArgumentoInvalido;
 
 final class BiofiltroTest extends TestCase
 {
@@ -38,13 +39,13 @@ final class BiofiltroTest extends TestCase
 
     public function testDivisaoPorZeroEhImpedida(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(ArgumentoInvalido::class);
         $this->biofiltro->calcularEficiencia(0, 5);
     }
 
     public function testValorDepoisDoFiltroNaoPodeSerNegativo(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(ArgumentoInvalido::class);
         $this->biofiltro->calcularEficiencia(10, -1);
     }
 

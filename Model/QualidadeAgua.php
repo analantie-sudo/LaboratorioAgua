@@ -23,17 +23,21 @@ class QualidadeAgua
     public function classificar(string $parametro, float $valor): string
     {
         if (!isset(self::FAIXAS[$parametro])) {
-            throw new InvalidArgumentException('Parâmetro de qualidade da água não cadastrado.');
+            throw new ArgumentoInvalido('Parâmetro de qualidade da água não cadastrado.');
         }
 
         if (!is_finite($valor)) {
-            throw new InvalidArgumentException('O valor informado deve ser um número finito.');
+            throw new ArgumentoInvalido('O valor informado deve ser um número finito.');
         }
 
         $faixa = self::FAIXAS[$parametro];
 
+        if ($valor < 0) {
+            throw new ArgumentoInvalido('O valor informado não pode ser negativo.');
+        }
+
         if ($parametro === 'ph' && ($valor < 0 || $valor > 14)) {
-            throw new InvalidArgumentException('O valor de pH deve estar entre 0 e 14.');
+            throw new ArgumentoInvalido('O valor de pH deve estar entre 0 e 14.');
         }
 
         if ($valor < $faixa['minimo'] || $valor > $faixa['maximo']) {
@@ -49,11 +53,11 @@ class QualidadeAgua
 
         foreach (self::FAIXAS as $parametro => $faixa) {
             if (!array_key_exists($parametro, $dados) || $dados[$parametro] === '') {
-                throw new InvalidArgumentException("O campo {$faixa['nome']} é obrigatório.");
+                throw new ArgumentoInvalido("O campo {$faixa['nome']} é obrigatório.");
             }
 
             if (!is_numeric($dados[$parametro])) {
-                throw new InvalidArgumentException("O valor de {$faixa['nome']} é inválido.");
+                throw new ArgumentoInvalido("O valor de {$faixa['nome']} é inválido.");
             }
 
             $valor = (float) $dados[$parametro];

@@ -1,34 +1,3 @@
-<?php
-
-declare(strict_types=1);
-
-require_once __DIR__ . '/../vendor/autoload.php';
-
-use Controlador\ControladorAgua;
-
-$controladorAgua = new ControladorAgua();
-$faixas = $controladorAgua->obterReferencias();
-?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Amostra</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../templates/css/global.css">
-</head>
-<body>
-<main class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h1>Cadastro de amostra</h1>
-            <p class="text-muted mb-0">Informe os dados realmente medidos pela equipe.</p>
-        </div>
-        <a href="index.php" class="btn btn-outline-primary">Voltar</a>
-    </div>
-
-    <form action="index.php" method="post" class="card p-4 shadow-sm">
         <div class="row g-3">
             <div class="col-md-6">
                 <label for="nome" class="form-label">Nome da amostra</label>

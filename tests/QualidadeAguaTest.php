@@ -6,6 +6,7 @@ namespace tests;
 
 use Model\QualidadeAgua;
 use PHPUnit\Framework\TestCase;
+use Model\ArgumentoInvalido;
 
 final class QualidadeAguaTest extends TestCase
 {
@@ -38,25 +39,25 @@ final class QualidadeAguaTest extends TestCase
 
     public function testPhFisicamenteImpossivelGeraErro(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(ArgumentoInvalido::class);
         $this->qualidade->classificar('ph', 15);
     }
 
     public function testValorNegativoGeraErro(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(ArgumentoInvalido::class);
         $this->qualidade->classificar('turbidez', -1);
     }
 
     public function testParametroDesconhecidoGeraErro(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(ArgumentoInvalido::class);
         $this->qualidade->classificar('salinidade', 1);
     }
 
     public function testCampoAusenteGeraErro(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(ArgumentoInvalido::class);
         $this->qualidade->analisar(['ph' => 7.0]);
     }
 

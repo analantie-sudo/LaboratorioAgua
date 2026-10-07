@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Controlador\ControladorAgua;
-use Modelo\Amostra;
+use Controller\ControladorQualidadeAgua;
+use Model\Amostra;
 
-$controladorAgua = new ControladorAgua();
+$controladorAgua = new ControladorQualidadeAgua();;
 $resultado = null;
 $erro = null;
 $nomeAmostra = '';
